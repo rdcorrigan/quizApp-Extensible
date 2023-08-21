@@ -1,0 +1,30 @@
+body {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+
+button {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    border-radius: 3px;
+}
+
+div {
+    margin: 0.5rem 2rem;
+}
+
+#previousNext button, #submit {
+    margin-top: 1rem;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+#submit {
+    font-size: 1.3rem;
+}
+
+#wrapper {
+    background-color: rgb(157, 251, 179);
+    padding: 0.5rem 0;
+}
