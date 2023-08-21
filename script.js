@@ -13,7 +13,8 @@ const body = document.querySelector("body"),
     appendResults = document.querySelector('#userAnswers'),
     userResults = {};
 let index = 0, 
-    flag = false;
+    flag = false,
+    submitted = false;
 
 appendedWarning.textContent = "Please answer all questions before submitting.";
 appendedSorry.textContent = "Sorry, one or more answers are incorrect.";
@@ -91,16 +92,19 @@ const nextQuestion = () => {
 }
 
 const getResult = () => {
-    if (Object.keys(userResults).length === Object.keys(key).length) {
-        if (JSON.stringify(key) === JSON.stringify(userResults)) {
-            document.body.appendChild(appendedCongrats);
+    if (!submitted) {
+        if (Object.keys(userResults).length === Object.keys(key).length) {
+            if (JSON.stringify(key) === JSON.stringify(userResults)) {
+                document.body.appendChild(appendedCongrats);
+            } else {
+                document.body.appendChild(appendedSorry);
+            }
+            document.body.append(`Answer Key: ${JSON.stringify(key).slice(1,-1)}`);
         } else {
-            document.body.appendChild(appendedSorry);
+            document.body.appendChild(appendedWarning);
+            flag = true;
         }
-        document.body.append(`Answer Key: ${JSON.stringify(key).slice(1,-1)}`);
-    } else {
-        document.body.appendChild(appendedWarning);
-        flag = true;
+        submitted = true;
     }
 }
 

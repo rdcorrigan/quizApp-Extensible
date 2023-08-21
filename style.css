@@ -10,6 +10,15 @@ button {
     border-radius: 3px;
 }
 
+button:hover {
+    background-color: black;
+    color: white;
+}
+
+button:active {
+    scale: 1.2;
+}
+
 div {
     margin: 0.5rem 2rem;
 }
