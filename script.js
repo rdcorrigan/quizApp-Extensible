@@ -14,8 +14,9 @@ const body = document.querySelector("body"),
     userResults = {};
 let index = 0, 
     flag = false;
+
 appendedWarning.textContent = "Please answer all questions before submitting.";
-appendedSorry.textContent = "Sorry, one or more answers are incorrect."
+appendedSorry.textContent = "Sorry, one or more answers are incorrect.";
 appendedCongrats.textContent = "Your answers are correct!";
 
 const questions = [
@@ -24,7 +25,7 @@ const questions = [
     "What is CSS used for?",
     "Is Java the same as JavaScript?",
     "What popular operating system has its own mascot, Tux the penguin?"
-]
+];
 
 const answers = [
     ["Python", "Java", "JavaScript", "C++"],
@@ -32,7 +33,7 @@ const answers = [
     ["Functionality", "Databases", "Servers", "Styling"],
     ["Yes", "No","Trick Question","No Idea"],
     ["Windows", "macOS", "Linux", "Unix"]
-]
+];
 
 const key = {
     'Q. 1':3,
@@ -42,7 +43,7 @@ const key = {
     'Q. 5':3
 };
 
-const makeQuestion = (index) => {
+const makeQuestion = index => {
     questionDiv.append(`Question ${index+1}: ${questions[index]}`);
     for (let i=0; i<4; i++) {
         const div = document.createElement('div');
@@ -61,8 +62,6 @@ const makeQuestion = (index) => {
 const recordAnswer = (index, i) => {
     userResults[`Q. ${++index}`] = ++i;
     appendResults.textContent = `Your Answers: ${JSON.stringify(userResults).slice(1,-1)}`;
-
-    console.log('Your Answers: ',userResults);
 }
 
 const prevQuestion = () => {
@@ -98,7 +97,7 @@ const getResult = () => {
         } else {
             document.body.appendChild(appendedSorry);
         }
-        document.body.append(`Answer Key: ${JSON.stringify(key).slice(1,-1)}`)
+        document.body.append(`Answer Key: ${JSON.stringify(key).slice(1,-1)}`);
     } else {
         document.body.appendChild(appendedWarning);
         flag = true;
@@ -108,4 +107,4 @@ const getResult = () => {
 makeQuestion(index);
 prevButton.addEventListener('click', prevQuestion);
 nextButton.addEventListener('click', nextQuestion);
-submit.addEventListener('click', getResult)
+submit.addEventListener('click', getResult);
