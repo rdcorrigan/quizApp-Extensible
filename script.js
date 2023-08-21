@@ -60,7 +60,7 @@ const makeQuestion = (index) => {
 
 const recordAnswer = (index, i) => {
     userResults[`Q. ${++index}`] = ++i;
-    appendResults.textContent = `Your Answers: ${JSON.stringify(userResults)}`;
+    appendResults.textContent = `Your Answers: ${JSON.stringify(userResults).slice(1,-1)}`;
 
     console.log('Your Answers: ',userResults);
 }
@@ -98,7 +98,7 @@ const getResult = () => {
         } else {
             document.body.appendChild(appendedSorry);
         }
-        document.body.append(`Answer Key: ${JSON.stringify(key)}`)
+        document.body.append(`Answer Key: ${JSON.stringify(key).slice(1,-1)}`)
     } else {
         document.body.appendChild(appendedWarning);
         flag = true;
