@@ -104,8 +104,8 @@ const getResult = () => {
             document.body.appendChild(appendedWarning);
             flag = true;
         }
-        submitted = true;
     }
+    submitted = true;
 }
 
 makeQuestion(index);
