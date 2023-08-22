@@ -12,6 +12,7 @@ const body = document.querySelector("body"),
     appendedSorry = document.createElement('p'),
     appendResults = document.querySelector('#userAnswers'),
     userResults = {};
+
 let index = 0, 
     flag = false,
     submitted = false;
@@ -68,6 +69,7 @@ const recordAnswer = (index, i) => {
 const prevQuestion = () => {
     questionDiv.innerText = '';
     answerDiv.innerText = '';
+    submitted = false;
     if (index > 0) {
         index--;
     }
@@ -81,6 +83,7 @@ const prevQuestion = () => {
 const nextQuestion = () => {
     questionDiv.innerText = '';
     answerDiv.innerText = '';
+    submitted = false;
     if (index < answers.length-1) {
         index++;
     }
