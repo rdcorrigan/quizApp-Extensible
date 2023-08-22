@@ -14,7 +14,7 @@ const body = document.querySelector("body"),
     userResults = {};
 
 let index = 0, 
-    flag = false,
+    reminder = false,
     submitted = false;
 
 appendedWarning.textContent = "Please answer all questions before submitting.";
@@ -73,9 +73,9 @@ const prevQuestion = () => {
     if (index > 0) {
         index--;
     }
-    if (flag) {
+    if (reminder) {
         document.body.removeChild(appendedWarning);
-        flag = false;
+        reminder = false;
     }
     makeQuestion(index);
 }
@@ -87,9 +87,9 @@ const nextQuestion = () => {
     if (index < answers.length-1) {
         index++;
     }
-    if (flag) {
+    if (reminder) {
         document.body.removeChild(appendedWarning);
-        flag = false;
+        reminder = false;
     }
     makeQuestion(index);
 }
@@ -105,7 +105,7 @@ const getResult = () => {
             document.body.append(`Answer Key: ${JSON.stringify(key).slice(1,-1)}`);
         } else {
             document.body.appendChild(appendedWarning);
-            flag = true;
+            reminder = true;
         }
     }
     submitted = true;
