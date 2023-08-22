@@ -47,9 +47,9 @@ const key = {
 
 const makeQuestion = index => {
     questionDiv.append(`Question ${index+1}: ${questions[index]}`);
-    for (let i=0; i<4; i++) {
-        const div = document.createElement('div');
-        const btn = document.createElement('button');
+    for (let i=0; i<answers[i].length; i++) {
+        const div = document.createElement('div'),
+              btn = document.createElement('button');
         let answerNum = i;
         answerDiv.append(div);
         div.append(++answerNum + ')');
@@ -69,7 +69,6 @@ const recordAnswer = (index, i) => {
 const prevQuestion = () => {
     questionDiv.innerText = '';
     answerDiv.innerText = '';
-    submitted = false;
     if (index > 0) {
         index--;
     }
@@ -83,7 +82,6 @@ const prevQuestion = () => {
 const nextQuestion = () => {
     questionDiv.innerText = '';
     answerDiv.innerText = '';
-    submitted = false;
     if (index < answers.length-1) {
         index++;
     }
@@ -103,12 +101,12 @@ const getResult = () => {
                 document.body.appendChild(appendedSorry);
             }
             document.body.append(`Answer Key: ${JSON.stringify(key).slice(1,-1)}`);
+            submitted = true;
         } else {
             document.body.appendChild(appendedWarning);
             reminder = true;
         }
     }
-    submitted = true;
 }
 
 makeQuestion(index);
