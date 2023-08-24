@@ -1,12 +1,12 @@
 // Build a simple quiz app that has a question and 4 answers you can click
 
-const body = document.querySelector("body"),
-    questionDiv = document.querySelector("#questionDiv"),
-    answerDiv = document.querySelector("#answerDiv"),
-    prevNextDiv = document.querySelector("#previousNext"),
-    prevButton = document.querySelector("#previous"),
-    nextButton = document.querySelector("#next"),
-    submit = document.querySelector("#submit"),
+const body = document.querySelector('body'),
+    questionDiv = document.querySelector('#questionDiv'),
+    answerDiv = document.querySelector('#answerDiv'),
+    prevNextDiv = document.querySelector('#previousNext'),
+    prevButton = document.querySelector('#previous'),
+    nextButton = document.querySelector('#next'),
+    submit = document.querySelector('#submit'),
     appendedWarning = document.createElement('p'),
     appendedCongrats = document.createElement('p'),
     appendedSorry = document.createElement('p'),
@@ -17,24 +17,24 @@ let index = 0,
     reminder = false,
     submitted = false;
 
-appendedWarning.textContent = "Please answer all questions before submitting.";
-appendedSorry.textContent = "Sorry, one or more answers are incorrect.";
-appendedCongrats.textContent = "Your answers are correct!";
+appendedWarning.textContent = 'Please answer all questions before submitting.';
+appendedSorry.textContent = 'Sorry, one or more answers are incorrect.';
+appendedCongrats.textContent = 'Your answers are correct!';
 
 const questions = [
-    "What is the main programming language used in web browsers?",
-    "When was JavaScript created?",
-    "What is CSS used for?",
-    "Is Java the same as JavaScript?",
-    "What popular operating system has its own mascot, Tux the penguin?"
+    'What is the main programming language used in web browsers?',
+    'When was JavaScript created?',
+    'What is CSS used for?',
+    'Is Java the same as JavaScript?',
+    'What popular operating system has its own mascot, Tux the penguin?',
 ];
 
 const answers = [
-    ["Python", "Java", "JavaScript", "C++"],
-    ["1995", "1990", "1993", "2000"],
-    ["Functionality", "Databases", "Servers", "Styling"],
-    ["Yes", "No","Trick Question","No Idea"],
-    ["Windows", "macOS", "Linux", "Unix"]
+    ['Python', 'Java', 'JavaScript', 'C++'],
+    ['1995', '1990', '1993', '2000'],
+    ['Functionality', 'Databases', 'Servers', 'Styling'],
+    ['Yes', 'No', 'Trick Question', 'No Idea'],
+    ['Windows', 'macOS', 'Linux', 'Unix'],
 ];
 
 const key = {
@@ -42,7 +42,7 @@ const key = {
     'Q. 2':1,
     'Q. 3':4,
     'Q. 4':2,
-    'Q. 5':3
+    'Q. 5':3,
 };
 
 const makeQuestion = index => {
@@ -55,41 +55,33 @@ const makeQuestion = index => {
         div.append(++answerNum + ')');
         div.append(btn);
         btn.innerText = answers[index][i];
-        btn.addEventListener('click', function () {
-            recordAnswer(index, i);
-        });
+        btn.addEventListener('click', () => recordAnswer(index, i));
     }
+}
+
+const changeQuestion = index => {
+    questionDiv.innerText = '';
+    answerDiv.innerText = '';
+    if (reminder) {
+        document.body.removeChild(appendedWarning);
+        reminder = false;
+    }
+    makeQuestion(index);
+}
+
+const prevQuestion = () => {
+    index > 0 ? --index : index;
+    changeQuestion(index);
+}
+
+const nextQuestion = () => {
+    index < questions.length-1 ? ++index : index;
+    changeQuestion(index);
 }
 
 const recordAnswer = (index, i) => {
     userResults[`Q. ${++index}`] = ++i;
     appendResults.textContent = `Your Answers: ${JSON.stringify(userResults).slice(1,-1)}`;
-}
-
-const prevQuestion = () => {
-    questionDiv.innerText = '';
-    answerDiv.innerText = '';
-    if (index > 0) {
-        index--;
-    }
-    if (reminder) {
-        document.body.removeChild(appendedWarning);
-        reminder = false;
-    }
-    makeQuestion(index);
-}
-
-const nextQuestion = () => {
-    questionDiv.innerText = '';
-    answerDiv.innerText = '';
-    if (index < answers.length-1) {
-        index++;
-    }
-    if (reminder) {
-        document.body.removeChild(appendedWarning);
-        reminder = false;
-    }
-    makeQuestion(index);
 }
 
 const getResult = () => {
